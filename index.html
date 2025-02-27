@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Personalizado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <!-- Carrossel de Imagens -->
+        <div class="carousel-container">
+            <div class="image-container">
+                <img class="carousel-image" src="IMG-20250207-WA0054.jpg" alt="Imagem 1" />
+                <img class="carousel-image" src="IMG-20250207-WA0050.jpg" alt="Imagem 2" />
+                <img class="carousel-image" src="IMG-20250207-WA0057.jpg" alt="Imagem 3" />
+                <img class="carousel-image" src="IMG-20250207-WA0056.jpg" alt="Imagem 4" />
+            </div>
+            <div class="carousel-indicators">
+                <div class="indicator" id="indicator1"></div>
+                <div class="indicator" id="indicator2"></div>
+                <div class="indicator" id="indicator3"></div>
+                <div class="indicator" id="indicator4"></div>
+            </div>
+        </div>
+
+        <!-- Título e Texto -->
+        <h1 class="title"> Kaio e Aylsa</h1>
+        <p class="subtitle"> oiiii mo amorrrr, eu te amooo eternamente minha vidaaa
+
+meus dias com vc ao meu lado são perfeitos, eu te admiro, lhe apresio muito pelo jeitinho que xoxe é saiba que eu smp vou está com vc para tudo e por tudo, vc e muito especial pra mim, oro todo dias por vc pra Deus lhe protejer lhe guarda de todo mal, e lhe abençoar pq ver vc feliz bem, mais que eu e oq eu gosto de ver posso tá faltando tudo mais vendo vc conquistar e sendo feliz e oq eu quero ver, tudo que vc pedir vou fazer o máximo pra lhe dar eu nao olho oq é eu só faço vc gostando tá bom, vc pra mim e como o nasce do sol radiante que ilumina meu dias, lindaaa como a lua em todas as fazesse, linda como a Aurora boreal, gostasonaaaaa pra mimmm, minha mulher independente de qualquer coisa vc é minha mulher, minha esposa pra smp, eu lhe amoo muito muito meu amor!!!!</p>
+        <p class="juntos-texto">Compartilhando momentos há</p>
+    </div>
+
+     <!-- Tabela Cronômetro -->
+    <div class="timer-container">
+        <div class="timer-row">
+            <div class="timer-box">
+                <span id="years">00</span>
+                <div class="label">Anos</div>
+            </div>
+            <div class="timer-box">
+                <span id="months">00</span>
+                <div class="label">Meses</div>
+            </div>
+        </div>
+        <div class="timer-row">
+            <div class="timer-box">
+                <span id="days">00</span>
+                <div class="label">Dias</div>
+            </div>
+            <div class="timer-box">
+                <span id="hours">00</span>
+                <div class="label">Horas</div>
+            </div>
+        </div>
+        <div class="timer-row">
+            <div class="timer-box">
+                <span id="minutes">00</span>
+                <div class="label">Minutos</div>
+            </div>
+            <div class="timer-box">
+                <span id="seconds">00</span>
+                <div class="label">Segundos</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data de início do cronômetro (12/12/2023 às 00h)
+        const startDate = new Date('2023-12-12T00:00:00');
+
+        // Função para adicionar zero à esquerda
+        function padZero(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate; // Diferença em milissegundos
+
+            // Calculando os valores do cronômetro
+            const seconds = Math.floor(diff / 1000) % 60;
+            const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) % 12;
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+
+            // Atualizando os valores no HTML com a função padZero
+            document.getElementById('years').textContent = padZero(years);
+            document.getElementById('months').textContent = padZero(months);
+            document.getElementById('days').textContent = padZero(days);
+            document.getElementById('hours').textContent = padZero(hours);
+            document.getElementById('minutes').textContent = padZero(minutes);
+            document.getElementById('seconds').textContent = padZero(seconds);
+        }
+
+        // Atualiza o cronômetro a cada segundo
+        setInterval(updateTimer, 1000);
+
+        // Inicializa o cronômetro imediatamente
+        updateTimer();
+
+        // Variáveis para o controle do carrossel
+        const images = document.querySelectorAll('.carousel-image');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentIndex = 0; // Índice da imagem atual
+
+        // Função para mudar a imagem com base no índice
+        function changeImage(index) {
+            // Oculta todas as imagens
+            images.forEach((image, i) => {
+                image.style.display = i === index ? 'block' : 'none';
+            });
+
+            // Atualiza os indicadores
+            indicators.forEach((indicator, i) => {
+                indicator.style.backgroundColor = i === index ? 'red' : 'lightgray';
+            });
+
+            // Atualiza o índice atual
+            currentIndex = index;
+        }
+
+        // Adiciona o evento de clique nas bolinhas
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                changeImage(index); // Muda a imagem ao clicar na bolinha
+            });
+        });
+
+        // Função para permitir o arraste nas imagens (para dispositivos móveis)
+        let startX = 0;
+        let isDragging = false;
+
+        const carouselContainer = document.querySelector('.carousel-container');
+
+        carouselContainer.addEventListener('mousedown', (e) => {
+            startX = e.pageX; // Armazena a posição inicial
+            isDragging = true;
+        });
+
+        carouselContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.pageX - startX; // Calcula a distância do arraste
+            if (deltaX > 50) { // Se o arraste for para a direita
+                changeImage((currentIndex === 0 ? images.length : currentIndex) - 1);
+                isDragging = false;
+            } else if (deltaX < -50) { // Se o arraste for para a esquerda
+                changeImage((currentIndex + 1) % images.length);
+                isDragging = false;
+            }
+        });
+
+        carouselContainer.addEventListener('mouseup', () => {
+            isDragging = false; // Finaliza o arraste
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            isDragging = false; // Se o mouse sair da área do carrossel
+        });
+
+        // Para dispositivos móveis (touch events)
+        carouselContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX; // Armazena a posição inicial
+            isDragging = true;
+        });
+
+        carouselContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.touches[0].pageX - startX; // Calcula a distância do arraste
+            if (deltaX > 50) { // Se o arraste for para a direita
+                changeImage((currentIndex === 0 ? images.length : currentIndex) - 1);
+                isDragging = false;
+            } else if (deltaX < -50) { // Se o arraste for para a esquerda
+                changeImage((currentIndex + 1) % images.length);
+                isDragging = false;
+            }
+        });
+
+        carouselContainer.addEventListener('touchend', () => {
+            isDragging = false; // Finaliza o arraste
+        });
+
+        // Inicializa a imagem visível
+        changeImage(currentIndex);
+
+        // Função para mudar a imagem automaticamente a cada 5 segundos
+        setInterval(() => {
+            changeImage((currentIndex + 1) % images.length); // Muda para a próxima imagem
+        }, 5000);
+    </script>
+</body>
+</html>
