@@ -1,0 +1,166 @@
+/* Estilo para o carrossel de imagens */
+.carousel-container {
+    position: relative;
+    width: 324px; /* Largura do carrossel */
+    height: 640.2px; /* Altura do carrossel */
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px; /* Bordas arredondadas no contêiner */
+}
+
+.image-container {
+    display: flex;
+    transition: transform 1s ease;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%; /* Garante que a imagem ocupe toda a altura */
+    object-fit: cover; /* Garante que a imagem se ajuste ao tamanho */
+    display: none; /* Inicialmente escondido */
+    transition: transform 0.3s ease; /* Transição suave para o zoom */
+}
+
+/* Efeito de zoom nas imagens */
+.carousel-image:hover {
+    transform: scale(1.05); /* Aumento ao passar o mouse */
+}
+
+/* Círculos indicativos */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: lightgray;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estilo geral do layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Preto acinzentado */
+    color: #ffffff;
+    margin: 0;
+    padding-top: 50px; /* Adiciona um espaçamento do topo */
+    display: flex;
+    flex-direction: column; /* Organiza os itens na vertical */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha o conteúdo no topo, mas ainda centraliza */
+    height: 100vh; /* Altura total da tela */
+}
+
+.title {
+    font-family: 'Dancing Script', cursive; /* Fonte cursiva */
+    font-size: 3rem; /* Tamanho da fonte */
+    color: #e7191f; /* Cor mais brilhante (vermelho mais vibrante) */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Aumentei o espaçamento abaixo do título */
+    font-weight: 700; /* Engrosse a letra */
+}
+
+.subtitle {
+    font-family: 'Times New Roman', serif; /* Fonte serifada */
+    font-size: 1.5rem; /* Tamanho da fonte */
+    color: #F5F5F5; /* Cor suave, quase branca */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 10px; /* Dá um pequeno espaço acima do texto */
+    margin: 0 40px;
+    font-weight: 400; /* Peso de fonte mais leve para o subtítulo */
+    position: relative; /* Necessário para adicionar a linha abaixo */
+}
+
+.subtitle::after {
+    content: "";
+    display: block;
+    width: 70%; /* A largura foi ajustada para 70% do subtítulo */
+    height: 2px; /* Espessura da linha */
+    background-color: #e7191f; /* Cor roxa */
+    margin: 30px auto 0; /* Aumentei a margem superior da linha para afastá-la mais do subtítulo */
+}
+
+.juntos-texto {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.0rem; /* Tamanho da fonte */
+    color: #F5F5F5; /* Cor suave, quase branca */
+    text-align: center;
+    margin: 0 40px;
+    font-weight: 700; /* Negrito */
+    margin-top: 30px; /* Ajuste o valor para o mesmo espaçamento entre a linha e o primeiro quadrado */
+}
+
+/* Estilos para o contêiner do cronômetro */
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Estilo para as linhas da tabela */
+.timer-row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha no mobile */
+    justify-content: space-between; /* Garante que as caixas fiquem bem espaçadas */
+    gap: 20px; /* Espaço entre as colunas */
+    margin-bottom: 30px;
+}
+
+/* Estilo para cada retângulo */
+.timer-box {
+    flex: 1 1 45%; /* Garante que cada caixa ocupe 45% da largura do container */
+    min-width: 150px; /* Garante que as caixas não fiquem menores que 150px */
+    height: 180px; /* Aumentei a altura do retângulo */
+    background-color: #000000; /* Cor de fundo preta */
+    color: white; /* Cor do texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px; /* Bordas arredondadas */
+}
+
+/* Ajustar o tamanho da fonte dentro dos retângulos */
+.timer-box span {
+    font-size: 2.5rem; /* Tamanho ajustado para o número */
+    font-weight: 600; /* Deixar o número mais grosso */
+}
+
+/* Ajuste para o rótulo abaixo do número */
+.timer-box .label {
+    font-size: 1rem; /* Tamanho do texto do rótulo ajustado */
+    font-weight: 400; /* Peso mais leve para o rótulo */
+    margin-top: 5px; /* Menos espaço entre o número e o rótulo */
+}
+
+/* Estilos responsivos para telas menores (mobile) */
+@media screen and (max-width: 768px) {
+    .timer-row {
+        justify-content: space-evenly; /* Garante o espaçamento adequado */
+    }
+
+    .timer-box {
+        flex: 1 1 45%; /* Garante que as caixas ocupem 45% de largura */
+        height: 150px; /* Aumentei a altura no mobile também */
+        min-width: 180px; /* Garante a largura mínima */
+    }
+
+    .timer-box span {
+        font-size: 2rem; /* Ajusta o tamanho do número para caber bem no retângulo */
+    }
+
+    .timer-box .label {
+        font-size: 1rem; /* Ajuste para o rótulo não ficar pequeno */
+    }
+}
